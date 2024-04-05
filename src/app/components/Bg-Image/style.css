@@ -1,0 +1,13 @@
+.bg-image-innerContainer {
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0, 0, 0, 0.6) /* Adjust opacity as needed */
+    ),
+    url(./../../../assets/bgImage.jpg);
+    background-size: cover;
+    background-position: center; /* Center horizontally and vertically */
+    background-repeat: no-repeat;
+    height: 350px;
+    opacity: 0.9;
+}
