@@ -44,7 +44,6 @@ const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
     const completeHotelDetail = {
       ...hotelDetail,
       hotelImage,
-     
     };
     if (
       !hotelDetail.owner ||
@@ -53,6 +52,7 @@ const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
       !hotelDetail.noOfGuests
     ) {
       alert("Please fill in all fields before submitting.");
+      setLoading(false);
       return;
     }
     await setHotelData(completeHotelDetail);

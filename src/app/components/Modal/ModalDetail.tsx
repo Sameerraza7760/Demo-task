@@ -97,8 +97,12 @@ const ModalDetail: React.FC<ModalProps> = ({ open, handleClose, detail }) => {
                 </p>
               </div>
             </div>
-            <div className="imageDetail">
-              <img src={detail?.hotelImage} alt="" />
+            <div className="imageDetail h-[200px]">
+              <img
+                src={detail?.hotelImage}
+                alt=""
+                className="h-full w-full object-cover object-center"
+              />
             </div>
           </div>{" "}
           <button
