@@ -34,14 +34,15 @@ const Card: React.FC<CardProps> = ({ item, index }) => {
         className="bg-gray-100 p-6 rounded-lg cursor-pointer shadow-lg"
         onClick={() => handleOpenModal(item.hotelId)}
       >
-        <div className="relative">
+        <div className="relative" style={{ height: "200px" }}>
           <button className="absolute top-3 right-2 bg-[#7B5AFF] w-[100px] sm:w-[120px] text-white font-serif h-[40px] rounded-[20px] z-10">
             Checked In
           </button>
           <img
-            className="h-45 rounded-3xl w-full object-cover object-center mb-6"
+            className="h-full w-full rounded-3xl object-cover object-center mb-6"
             src={item.hotelImage}
             alt="content"
+            style={{ objectFit: "cover" }}
           />
         </div>
         <h2 className="text-lg text-gray-900 font-medium title-font mb-2">

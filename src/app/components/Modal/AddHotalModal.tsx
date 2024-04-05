@@ -15,6 +15,7 @@ interface ModalProps {
 const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
   const [file, setFile] = useState<File | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [hotelDetail, setHotelDetail] = useState<hoteLDetail>({
     owner: "",
     BookedDate: "",
@@ -22,7 +23,7 @@ const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
     noOfGuests: 0,
     hotelImage: "",
   });
-  const { setHotelData, loading } = useHotelDetail();
+  const { setHotelData } = useHotelDetail();
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -38,11 +39,12 @@ const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
   };
 
   const handleAddButtonClick = async () => {
+    setLoading(true);
     const hotelImage = await uploadImage(file);
     const completeHotelDetail = {
       ...hotelDetail,
       hotelImage,
-      // BookedDate: hotelDetail.BookedDate.format("YYYY-MM-DD"),
+     
     };
     if (
       !hotelDetail.owner ||
@@ -54,6 +56,7 @@ const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
       return;
     }
     await setHotelData(completeHotelDetail);
+    setLoading(false);
     setHotelDetail({
       owner: "",
       BookedDate: "",

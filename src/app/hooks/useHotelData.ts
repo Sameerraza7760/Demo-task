@@ -19,10 +19,9 @@ const useHotelDetail = () => {
   const [hotelDetails, setHotelDetails] = useState<hoteLDetail>();
   const [hotels, setHotels] = useState<hoteLDetail[]>([]);
   const [fetch, setFetch] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+
   const setHotelData = async (hotelDetail: hoteLDetail): Promise<void> => {
     try {
-      setLoading(true);
       const collectionRef = collection(db, "hotels");
       const docRef = await addDoc(collectionRef, hotelDetail);
       await updateDoc(docRef, { hotelId: docRef.id });
@@ -30,11 +29,9 @@ const useHotelDetail = () => {
       setFetch(true);
     } catch (error: any) {
       console.log(error.message);
-    } finally {
-      setLoading(false);
     }
   };
-  useEffect(() => { 
+  useEffect(() => {
     const fetchHotels = () => {
       const collectionRef = collection(db, "hotels");
       return onSnapshot(
@@ -74,8 +71,6 @@ const useHotelDetail = () => {
     hotels,
     fetch,
     setFetch,
-    loading
-    // fetchHotels,
   };
 };
 
