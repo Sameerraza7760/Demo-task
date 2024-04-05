@@ -13,7 +13,7 @@ function Navbar() {
       <div className="inner-Container w-[95%] mx-auto bg-white flex justify-between p-5 shadow-md rounded-full">
         {" "}
         <div>
-          <button className="w-[45px] h-[45px]  text-white bg-[#7B5AFF]">
+          <button className=" w-[40px] sm:w-[45px] h-[40px] sm:h-[45px]  text-white bg-[#7B5AFF]">
             Logo
           </button>
         </div>{" "}
