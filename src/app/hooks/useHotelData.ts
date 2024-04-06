@@ -15,7 +15,7 @@ import { hoteLDetail } from "../types/type.hotelDetail";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const useHotelDetail = () => {
+const  useHotelDataManagement = () => {
   const [hotelDetails, setHotelDetails] = useState<hoteLDetail>();
   const [hotels, setHotels] = useState<hoteLDetail[]>([]);
   const [fetch, setFetch] = useState<boolean>(false);
@@ -74,4 +74,4 @@ const useHotelDetail = () => {
   };
 };
 
-export default useHotelDetail;
+export default  useHotelDataManagement;

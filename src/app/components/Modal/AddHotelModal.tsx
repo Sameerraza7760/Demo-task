@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Box, TextField, Button, CircularProgress } from "@mui/material";
+import useHotelDataManagement from "@/app/hooks/useHotelData";
 import { hoteLDetail } from "@/app/types/type.hotelDetail";
-import UploadImg from "@/assets/Upload-Drag.png";
-import Image from "next/image";
-import CloseIcon from "@mui/icons-material/Close";
-import useHotelDetail from "@/app/hooks/useHotelData";
 import { uploadImage } from "@/app/utills/utills.uploadImage";
+import UploadImg from "@/assets/Upload-Drag.png";
+import CloseIcon from "@mui/icons-material/Close";
+import { Box, Button, CircularProgress, Modal, TextField } from "@mui/material";
 import moment from "moment";
+import Image from "next/image";
+import React, { useState } from "react";
 interface ModalProps {
   open: boolean;
   handleClose: () => void;
@@ -23,7 +23,7 @@ const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
     noOfGuests: 0,
     hotelImage: "",
   });
-  const { setHotelData } = useHotelDetail();
+  const { setHotelData } = useHotelDataManagement();
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -46,12 +46,14 @@ const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
       hotelImage,
     };
     if (
-      !hotelDetail.owner ||
-      !hotelDetail.BookedDate ||
-      !hotelDetail.noOfrooms ||
-      !hotelDetail.noOfGuests
+      [
+        hotelDetail.BookedDate,
+        hotelDetail.noOfGuests,
+        hotelDetail.noOfrooms,
+        hotelDetail.owner,
+      ].some((field) => field === "" || false)
     ) {
-      alert("Please fill in all fields before submitting.");
+      alert("All Fields Are Required");
       setLoading(false);
       return;
     }
@@ -134,7 +136,7 @@ const ModalComponent: React.FC<ModalProps> = ({ open, handleClose }) => {
             size="small"
             type="date"
             className="border-b border-purple-solid mb-4"
-            value={moment(hotelDetail.BookedDate).format("YYYY-MM-DD")} // Format BookedDate using Moment.js
+            value={moment(hotelDetail.BookedDate).format("YYYY-MM-DD")}
             onChange={(e) =>
               setHotelDetail({
                 ...hotelDetail,

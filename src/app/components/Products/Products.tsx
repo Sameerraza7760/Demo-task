@@ -1,10 +1,10 @@
 "use client";
-import useHotelDetail from "@/app/hooks/useHotelData";
+import useHotelDataManagement from "@/app/hooks/useHotelData";
 import { hoteLDetail } from "@/app/types/type.hotelDetail";
 import { ToastContainer } from "react-toastify";
 import Card from "../Card/Card";
 function Products() {
-  const { hotels } = useHotelDetail();
+  const { hotels } = useHotelDataManagement();
 
   return (
     <section className="text-gray-600 body-font">

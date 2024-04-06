@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import "./style.css";
 import Text from "@/assets/text.png";
 import Image from "next/image";
+import ModalComponent from "../Modal/AddHotelModal";
 
-import ModalComponent from "../Modal/AddHotalModal";
 function Bgimage() {
   const [openModal, setOpenModal] = useState(false);
 
@@ -39,7 +39,7 @@ function Bgimage() {
           </button>
         </div>
       </div>
-    
+
       <ModalComponent open={openModal} handleClose={handleCloseModal} />
     </div>
   );
